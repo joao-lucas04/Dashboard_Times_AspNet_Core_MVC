@@ -1,0 +1,45 @@
+﻿@model Dashboard_Times.Models.Time
+
+@{
+    ViewData["Title"] = "Editar Time";
+}
+
+<div class="origin">
+    <h1>Editar</h1>
+
+    <h4>Time</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditTime">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div style="display: none">
+                    <label asp-for="IdTime" class="control-label"></label>
+                    <input asp-for="IdTime" class="form-control" />
+                    <span asp-validation-for="IdTime" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Abreviacao" class="control-label"></label>
+                    <input asp-for="Abreviacao" class="form-control" />
+                    <span asp-validation-for="Abreviacao" class="text-danger"></span>
+                </div>
+                <div style="display: none">
+                    <label asp-for="Img" class="control-label"></label>
+                    <input asp-for="Img" class="form-control" />
+                    <span asp-validation-for="Img" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,109 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\Dashboard_Times.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Dashboard_Times.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\css\\times.css",
+      "PackagePath": "staticwebassets\\css\\times.css"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\logo_sports.png",
+      "PackagePath": "staticwebassets\\img\\logo_sports.png"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\botafogo-logo-0.png",
+      "PackagePath": "staticwebassets\\img\\times\\botafogo-logo-0.png"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\carlao.png",
+      "PackagePath": "staticwebassets\\img\\times\\carlao.png"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\cortina.png",
+      "PackagePath": "staticwebassets\\img\\times\\cortina.png"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\png-clipart-corinthians-arena-sport-club-corinthians-paulista-football-computer-icons-tatuape-logo-corinthians-emblem-label.png",
+      "PackagePath": "staticwebassets\\img\\times\\png-clipart-corinthians-arena-sport-club-corinthians-paulista-football-computer-icons-tatuape-logo-corinthians-emblem-label.png"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Dashboard_Times.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.build.Dashboard_Times.props",
+      "PackagePath": "build\\Dashboard_Times.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildMultiTargeting.Dashboard_Times.props",
+      "PackagePath": "buildMultiTargeting\\Dashboard_Times.props"
+    },
+    {
+      "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.buildTransitive.Dashboard_Times.props",
+      "PackagePath": "buildTransitive\\Dashboard_Times.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

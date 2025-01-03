@@ -1,0 +1,128 @@
+﻿body{
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo para a tabela */
+.styled-table {
+    text-align: start;
+    width: 98%;
+    border-collapse: collapse;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    /* Estilo do cabeçalho */
+    .styled-table thead tr {
+        background-color: #022c3a;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .styled-table th, .styled-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+    }
+
+    /* Linhas alternadas */
+    .styled-table tbody tr:nth-child(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:nth-child(odd) {
+        background-color: #e6e6e6;
+    }
+
+    /* Efeito ao passar o mouse */
+    .styled-table tbody tr:hover {
+        background-color: #d1ecf1;
+    }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .styled-table th, .styled-table td {
+        font-size: 14px;
+    }
+}
+
+.titulo{
+    margin-top: -15px;
+    margin-left: 20px;
+}
+    .titulo h1 {
+        color: #022c3a;
+        font-family: 'Poppins', sans-serif;
+        font-size: 40px;
+    }
+
+.header {
+   display: flex;
+   justify-content: space-between;
+   margin-left: 20px;
+   margin-top: 40px;
+   align-items: center;
+}
+
+.container1 button {
+    padding: 12px;
+    color: #f3f3f3;
+    background-color: #022c3a;
+    border: none;
+    cursor: pointer;
+}
+
+    .container1 button i {
+        padding-right: 6px;
+    }
+
+    /* Efeito de hover */
+    .container1 button:hover {
+        background-color: #1abc9c; /* Altera a cor de fundo no hover */
+        transform: translateY(-1px); /* Levanta o botão um pouco */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Adiciona sombra para dar um efeito de destaque */
+    }
+
+.container2 {
+    display: inline-flex;
+    align-items: center;
+}
+
+    .container2 h2 {
+        color: #022c3a;
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        margin-right: 10px; 
+    }
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+    .search-container input {
+        height: 30px;
+        padding-left: 30px; 
+    }
+
+    .search-container button {
+        position: absolute;
+        left: 5px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+    }
+
+        .search-container button i {
+            color: #022c3a; 
+        }
+
+.container3 h2 {
+    color: #022c3a;
+    font-family: 'Poppins', sans-serif;
+    font-size: 23px;
+}

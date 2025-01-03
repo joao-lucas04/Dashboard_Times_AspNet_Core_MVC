@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Dashboard_Times.Models.Time>
+<link href="~/css/times.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+@{
+    ViewData["Title"] = "Teams";
+}
+<html>
+    <body>
+        <div class="titulo">
+            <h1>Teams</h1>
+        </div>
+
+        <div class="header">
+            <div class="container1">
+                <a asp-area="" asp-controller="Time" asp-action="CadastrarTime">
+                    <button type="button">
+                    <i class="fas fa-plus"></i> <!-- + -->
+                        New Team
+                    </button>
+                </a>
+            </div>
+
+            <div class="container2">
+                <div>
+                    <h2>Filter:</h2>
+                </div>
+                <div class="search-container">
+                <input type="text" placeholder="Enter the Team Code or Name..." />
+                    <button type="button">
+                        <i class="fas fa-search"></i> <!-- Lupa -->
+                    </button>
+                </div>
+            </div>
+
+            <div class="container3">
+                <div>
+                    <h2>Total Teams: @ViewData["TotalTimes"]</h2>
+                </div>
+            </div>
+        </div>
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Abbreviation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var time in Model)
+                {
+                    <tr>
+                        <td>@time.IdTime</td>
+                        <td><img width="50px" height="50px" class="imgTime" src="@time.Img" /></td>
+                        <td>@time.Nome</td>
+                        <td>@time.Abreviacao</td>
+                        <td>
+                            @Html.ActionLink("View", "VizualizarTime") |
+                            @Html.ActionLink("Edit", "EditarTime", new { id = time.IdTime }) |
+                            @Html.ActionLink("Delete", "DelTime", new { id = time.IdTime }, new { onclick = "return confirm('Deseja realmente excluir este item?')" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </body>
+</html>
+
+
+
+

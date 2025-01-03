@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"] - Dashboard Sports</title>
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/Dashboard_Times.styles.css" asp-append-version="true" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <nav class="sidebar">
+
+                <div id="logo">
+                    <img id="logo_sports" src="~/img/logo_sports.png" />
+                </div>
+
+                <ul>
+                    <li><a id="overview" asp-area="" asp-controller="Home" asp-action="Index">Overview</a></li>
+                    <li><a asp-area="" asp-controller="Time" asp-action="Index" id="teams">Teams</a></li>
+                    <li><a id="players" href="/players">Players</a></li>
+                    <li><a id="championships" href="/championships">Championships</a></li>
+                </ul>
+            </nav>
+                <div class="container">
+                    <main role="main" class="pb-3">
+                        @RenderBody()
+                    </main>
+                </div>
+        </div>
+    
+        <footer>
+                &copy; 2025 - Dashboard_Times - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </footer>
+                
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para o wrapper que envolve a barra lateral e o conteúdo */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#logo{
+    display: flex;
+    justify-content: center;
+
+}
+
+/* Estilo para a barra lateral */
+.sidebar {
+    width: 250px;
+    background-color: #022c3a;
+    color: #fff;
+    padding: 20px;
+    padding-top: 30px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+    /* Estilo do título da barra lateral */
+    .sidebar h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* Estilo para a lista de itens */
+    .sidebar ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+            .sidebar ul li a {
+                text-decoration: none;
+                color: #fff;
+                font-size: 18px;
+                font-family: 'Poppins', sans-serif;
+                width: 100%;
+                display: block;
+                padding: 10px;
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                transition: background-color 0.3s;
+            }
+
+                .sidebar ul li a:hover {
+                    background-color: #34495e;
+                    transition: all 0.3s ease; 
+                }
+
+                .sidebar ul li a.active {
+                    background-color: #f7cc00;
+                    color: #01181e;
+                    font-weight: bold;
+                }
+
+/* Estilo para o conteúdo principal */
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+}
+
+.container {
+    margin-left: 20vw; /* Move o conteúdo principal para a direita */
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+    background-color: #f4f4f4;
+}
+
+/* Responsividade: barra lateral em dispositivos móveis */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+footer {
+    background-color: #022c3a;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    position: relative;
+    padding: 10px;
+    bottom: 0;
+    width: 76.61vw;
+    margin-left: 20.7vw;
+}
+
+    footer a {
+        color: #1abc9c;
+        text-decoration: none;
+    }
+
+        footer a:hover {
+            color: #16a085;
+        }
