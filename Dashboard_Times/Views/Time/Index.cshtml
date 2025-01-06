@@ -14,24 +14,33 @@
             <div class="container1">
                 <a asp-area="" asp-controller="Time" asp-action="CadastrarTime">
                     <button type="button">
-                    <i class="fas fa-plus"></i> <!-- + -->
+                        <i class="fas fa-plus"></i> <!-- + -->
                         New Team
                     </button>
                 </a>
             </div>
 
-            <div class="container2">
-                <div>
-                    <h2>Filter:</h2>
-                </div>
-                <div class="search-container">
-                <input type="text" placeholder="Enter the Team Code or Name..." />
-                    <button type="button">
-                        <i class="fas fa-search"></i> <!-- Lupa -->
-                    </button>
-                </div>
+            <div class="container1">
+                <button id="btnExcel" onclick="window.location.href='@Url.Action("ExportarParaExecel", "Time")'">
+                        <i class="fas fa-download"></i>
+                        Download
+                </button>
             </div>
 
+            <form method="get" asp-action="Index">
+                <div class="container2">
+                    <div>
+                        <h2>Filter:</h2>
+                    </div>
+                    <div class="search-container">
+                        <input value="@ViewBag.txtTermo" name="termo" type="text" placeholder="Enter Team Code or Name" />
+                        <button type="submit">
+                            <i class="fas fa-search"></i> <!-- Lupa -->
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
             <div class="container3">
                 <div>
                     <h2>Total Teams: @ViewData["TotalTimes"]</h2>
@@ -57,15 +66,30 @@
                         <td><img width="50px" height="50px" class="imgTime" src="@time.Img" /></td>
                         <td>@time.Nome</td>
                         <td>@time.Abreviacao</td>
-                        <td>
-                            @Html.ActionLink("View", "VizualizarTime") |
-                            @Html.ActionLink("Edit", "EditarTime", new { id = time.IdTime }) |
-                            @Html.ActionLink("Delete", "DelTime", new { id = time.IdTime }, new { onclick = "return confirm('Deseja realmente excluir este item?')" })
+                        <td class="Column-Action">
+                            <button id="btnView" onclick="window.location.href='@Url.Action("VizualizarTime", "Time")'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+
+                            <button id="btnEdit" onclick="window.location.href='@Url.Action("EditarTime", "Time", new { id = time.IdTime })'">
+                                <i class="fas fa-edit"></i>
+                            </button>
+
+                            <button id="btnDel" onclick="if(confirm('Deseja realmente excluir este item?')) { window.location.href='@Url.Action("DelTime", "Time", new { id = time.IdTime })'; }">
+                                <i class="fas fa-trash"></i>
+                            </button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
+        
+        @if (ViewBag.MsgErro != null)
+        {
+            <div class="msg-erro">
+                <span>@ViewBag.MsgErro</span>
+            </div>
+        }
     </body>
 </html>
 

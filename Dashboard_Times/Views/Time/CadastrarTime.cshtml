@@ -1,59 +1,56 @@
 ﻿@model Dashboard_Times.Models.Time
-
+<link href="~/css/times.css" rel="stylesheet" />
 @{
     ViewData["Title"] = "Cadastrar Time";
 }
 
-<div class="origin">
-    <h1>Cadastro</h1>
-
-    <h4>Time</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="CadTime" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Nome" class="control-label"></label>
-                    <input asp-for="Nome" class="form-control" />
-                    <span asp-validation-for="Nome" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Abreviacao" class="control-label"></label>
-                    <input asp-for="Abreviacao" class="form-control" />
-                    <span asp-validation-for="Abreviacao" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Img" class="control-label"></label>
-                    <input type="file" name="file" asp-for="Img" class="form-control" />
-                    <span asp-validation-for="Img" class="text-danger"></span>
-                </div>
-                @*<div class="form-group">
-                <div class="col-md-10">
-                @Html.DropDownListFor(model => model.RefCategoria.IdCategoria, ViewBag.ListaCategorias as SelectList, "Categoria",
-                htmlAttributes: new { @class = "form-control" })
-                </div>
-                </div>*@
-                @*Add  dorpdown *@
-                @* <div class="form-group">
-                <<<<<<< HEAD
-                <label asp-for="RefCategoria.IdCategoria" class="control-label"></label>
-                <input asp-for="RefCategoria.IdCategoria" class="form-control" />
-                <span asp-validation-for="RefCategoria.IdCategoria" class="text-danger"></span>
-                =======
-                <label asp-for="RefCategoria.IdCategoria" class="control-label"></label>
-                <input asp-for="RefCategoria.IdCategoria" class="form-control" />
-                <span asp-validation-for="RefCategoria.IdCategoria" class="text-danger"></span>
-                >>>>>>> 23277d273526373e7f02ebe431724171bcc171d9
-                </div> *@
-                <div class="form-group">
-                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                </div>
-            </form>
+<html>
+    <body>
+        <div class="titulo">
+            <h1>Teams</h1>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="CadTime" enctype="multipart/form-data" class="form-container">
+                    <h2>Register Team</h2>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-</div>
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label">Team Name</label>
+                        <input asp-for="Nome" class="form-control" placeholder="Enter Team Name" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
 
+                    <div class="form-group">
+                        <label asp-for="Abreviacao" class="control-label">Abbreviation</label>
+                        <input asp-for="Abreviacao" class="form-control" placeholder="Ex: ABC" />
+                        <span asp-validation-for="Abreviacao" class="text-danger"></span>
+                        @if (ViewBag.MsgErro != null)
+                        {
+                            <span class="text-danger">@ViewBag.MsgErro</span>
+                        }
+                    </div>
+
+                    <div class="form-Img">
+                        <label asp-for="Img" class="control-label">Team Image</label>
+                        <input type="file" name="file" asp-for="Img" class="fileImg" />
+                        <span asp-validation-for="Img" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="form-group button-group">
+                        <button type="submit" class="btn-submit">Save</button>
+                        <a asp-area="" class="btn-back" asp-controller="Time" asp-action="Index">
+                            Back
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

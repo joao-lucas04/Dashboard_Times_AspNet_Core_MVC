@@ -13,7 +13,9 @@
         case "/Time/EditarTime":
             activeLinkId = "teams";
             break;
-        case "/players":
+        case "/Jogador":
+        case "/Jogador/CadastrarJogador":
+        case "/Jogador/EditarJogador":
             activeLinkId = "players";
             break;
         case "/championships":

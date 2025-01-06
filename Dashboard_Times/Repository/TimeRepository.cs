@@ -1,6 +1,7 @@
 ﻿using Dashboard_Times.Models;
 using Dashboard_Times.Repository.Contract;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Cmp;
 using System.Globalization;
 
 namespace Dashboard_Times.Repository
@@ -33,9 +34,57 @@ namespace Dashboard_Times.Repository
             }
         }
 
+        //busca é feita pelo nome ou ID do time, através do LIKE das Procedures no MYSQL
         public IEnumerable<Time> BuscarTime(string termo)
         {
-            throw new NotImplementedException();
+            
+            List<Time> times = new List<Time>();
+
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                // Primeiro, tenta buscar pelo nome
+                MySqlCommand cmdNome = new MySqlCommand("call BuscarTimeNome(@Nome)", conexao);
+                cmdNome.Parameters.AddWithValue("@Nome", termo);
+
+                using (var reader = cmdNome.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        times.Add(new Time
+                        {
+                            IdTime = reader.GetInt32("IdTime"),
+                            Nome = reader.GetString("Nome"),
+                            Abreviacao = reader.GetString("Abreviacao"),
+                            Img = reader.GetString("Img")
+                        });
+                    }
+                }
+
+                //se não achar por Nome tenta achar por ID
+                if (!times.Any())
+                {
+                    MySqlCommand cmdId = new MySqlCommand("call BuscarTimeId(@Id)", conexao);
+                    cmdId.Parameters.AddWithValue("@Id", termo);
+
+                    using (var reader = cmdId.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            times.Add(new Time
+                            {
+                                IdTime = reader.GetInt32("IdTime"),
+                                Nome = reader.GetString("Nome"),
+                                Abreviacao = reader.GetString("Abreviacao"),
+                                Img = reader.GetString("Img")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return times;
         }
 
         public void CadastrarTime(Time time)
@@ -44,8 +93,7 @@ namespace Dashboard_Times.Repository
             {
                 conexao.Open();
 
-                var query = "insert into tbTime(Nome, Abreviacao, Img) values (@Nome, @Abreviacao, @Img)";
-
+                var query = "INSERT INTO tbTime (Nome, Abreviacao, Img) VALUES (@Nome, @Abreviacao, @Img)";
                 MySqlCommand cmd = new MySqlCommand(query, conexao);
 
                 cmd.Parameters.Add("@Nome", MySqlDbType.VarChar).Value = time.Nome;

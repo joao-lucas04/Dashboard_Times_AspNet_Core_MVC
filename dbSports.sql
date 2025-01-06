@@ -5,7 +5,7 @@ create table tbTime(
 IdTime int primary key auto_increment,
 Nome varchar(250) not null,
 Abreviacao char(3) not null unique,
-Img varchar(100) not null 
+Img varchar(900) not null 
 );
 
 create table tbPosicao(
@@ -23,6 +23,32 @@ IdTime int,
 foreign key (IdTime) references tbTime(IdTime),
 IdPosicao int not null,
 foreign key (IdPosicao) references tbPosicao(IdPosicao)
+);
+
+create table tbCampeonato(
+IdCamp int primary key auto_increment,
+Nome varchar(200) not null
+);
+
+-- tabela na relação N:N para evitar duplicação com a chave primaria composta
+create table tbParticipante(
+IdCamp int not null,
+IdTime int not null,
+Situacao varchar(50) not null default 'Ativo', -- Ativo do campeonato ou Eliminado ou Campeão da competição
+foreign key (IdCamp) references tbCampeonato(IdCamp),
+foreign key (IdTime) references tbTime(IdTime),
+primary key (IdCamp, IdTime)
+);
+
+create table tbPartida(
+IdPartida int primary key auto_increment,
+PlacarTimeCasa smallint not null default 0,
+PlacarTimeVisitante smallint not null default 0,
+IdCamp int not null,
+IdTimeCasa int not null,
+IdTimeVisitante int not null,
+foreign key (IdCamp, IdTimeCasa) references tbParticipantes(IdCamp, IdTime),
+foreign key (IdCamp, IdTimeVisitante) references tbParticipantes(IdCamp, IdTime)
 );
 
 insert into tbTime(Nome, Abreviacao, Img) values
@@ -70,3 +96,71 @@ begin
 	update tbJogador set IdTime = null where IdTime = _IdTime;
 	delete from tbTime where IdTime = _IdTime;
 end //
+
+delimiter //
+create procedure BuscarTimeId(
+_IdTime int
+)
+begin
+	select * from tbTime where
+    IdTime like CONCAT('%', _IdTime ,'%');
+end //
+
+delimiter //
+create procedure BuscarTimeNome(
+_Nome varchar(250)
+)
+begin
+	select * from tbTime where
+    Nome like CONCAT('%', _Nome ,'%');
+end //
+
+delimiter //
+create procedure ObterJogador(
+_IdJogador int
+)
+begin
+	SELECT 
+		J.IdJogador,
+        J.NomeCompleto,
+        J.NomeCamisa,
+        J.Idade,
+        J.NumeroCamisa,
+        T.IdTime,
+        T.Abreviacao,
+        P.IdPosicao,
+        P.Nome 
+	FROM 
+		tbJogador as J
+		INNER JOIN
+			tbTime as T on J.IdTime = T.IdTime
+		INNER JOIN
+			tbPosicao as P on J.IdPosicao = P.IdPosicao
+		WHERE IdJogador = _IdJogador;
+end //
+
+delimiter //
+create procedure ObterTodosJogadores()
+begin
+	SELECT 
+		J.IdJogador,
+        J.NomeCompleto,
+        J.NomeCamisa,
+        J.Idade,
+        J.NumeroCamisa,
+        T.IdTime,
+        T.Abreviacao,
+        P.IdPosicao,
+        P.Nome 
+	FROM 
+		tbJogador as J
+		LEFT JOIN
+			tbTime as T on J.IdTime = T.IdTime
+		LEFT JOIN
+			tbPosicao as P on J.IdPosicao = P.IdPosicao;
+end //
+
+
+
+
+
