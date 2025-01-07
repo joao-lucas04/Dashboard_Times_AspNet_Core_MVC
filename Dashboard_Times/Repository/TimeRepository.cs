@@ -152,7 +152,7 @@ namespace Dashboard_Times.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM tbTime", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM tbTime ORDER BY Nome ASC", conexao);
 
                 using (var reader = cmd.ExecuteReader())
                 {

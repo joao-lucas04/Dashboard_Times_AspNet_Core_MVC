@@ -20,6 +20,7 @@ namespace Dashboard_Times.Controllers
 
         public IActionResult Index(string termo)
         {
+            //Devolve oque foi escrito na input depois da nova consulta
             ViewBag.txtTermo = termo;
 
             IEnumerable<Time> times;
@@ -112,7 +113,7 @@ namespace Dashboard_Times.Controllers
             var times = _timeRepository.ObterTodosTimes().ToList();
 
             // Chama o método de exportação
-            var arquivoExcel = GerenciadorExportacoes.ExportarExcel(times);
+            var arquivoExcel = GerenciadorExportacoes.ExportarExcelTime(times);
 
             // Retorna o arquivo Excel como um download
             return File(arquivoExcel, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "times.xlsx");

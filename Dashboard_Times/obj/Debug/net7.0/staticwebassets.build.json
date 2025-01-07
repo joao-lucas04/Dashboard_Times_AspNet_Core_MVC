@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2xqmkadyWPpyMVRTdRSwvMFuReXdFX6Wuj/60sKzFgE=",
+  "Hash": "gRs4pLrm0HCo4hH5bujaUXMP+xqmCt3bfeP+eYnXULE=",
   "Source": "Dashboard_Times",
   "BasePath": "_content/Dashboard_Times",
   "Mode": "Default",
@@ -236,6 +236,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\times\\Captura de Tela (307).png"
+    },
+    {
+      "Identity": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Corinthians_simbolo.png",
+      "SourceId": "Dashboard_Times",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\",
+      "BasePath": "_content/Dashboard_Times",
+      "RelativePath": "img/times/Corinthians_simbolo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\times\\Corinthians_simbolo.png"
     },
     {
       "Identity": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\cortina.png",

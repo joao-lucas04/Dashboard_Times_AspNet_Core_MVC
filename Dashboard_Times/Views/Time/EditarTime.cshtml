@@ -42,24 +42,7 @@
                         <input asp-for="Img" class="form-control" />
                         <span asp-validation-for="Img" class="text-danger"></span>
                     </div>
-                    @*<div class="form-group">
-                    <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.RefCategoria.IdCategoria, ViewBag.ListaCategorias as SelectList, "Categoria",
-                    htmlAttributes: new { @class = "form-control" })
-                    </div>
-                    </div>*@
-                    @*Add  dorpdown *@
-                    @* <div class="form-group">
-                    <<<<<<< HEAD
-                    <label asp-for="RefCategoria.IdCategoria" class="control-label"></label>
-                    <input asp-for="RefCategoria.IdCategoria" class="form-control" />
-                    <span asp-validation-for="RefCategoria.IdCategoria" class="text-danger"></span>
-                    =======
-                    <label asp-for="RefCategoria.IdCategoria" class="control-label"></label>
-                    <input asp-for="RefCategoria.IdCategoria" class="form-control" />
-                    <span asp-validation-for="RefCategoria.IdCategoria" class="text-danger"></span>
-                    >>>>>>> 23277d273526373e7f02ebe431724171bcc171d9
-                    </div> *@
+                    
                     <div class="form-group button-group">
                         <button type="submit" class="btn-submit">Save</button>
                         <a asp-area="" class="btn-back" asp-controller="Time" asp-action="Index">

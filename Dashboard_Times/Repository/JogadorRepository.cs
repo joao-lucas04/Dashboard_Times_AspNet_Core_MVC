@@ -1,6 +1,7 @@
 ﻿using Dashboard_Times.Models;
 using Dashboard_Times.Repository.Contract;
 using MySql.Data.MySqlClient;
+using System.Data;
 
 namespace Dashboard_Times.Repository
 {
@@ -35,7 +36,7 @@ namespace Dashboard_Times.Repository
                 cmd.Parameters.AddWithValue("@NomeCamisa", jogador.NomeCamisa);
                 cmd.Parameters.AddWithValue("@Idade", jogador.Idade);
                 cmd.Parameters.AddWithValue("@NumeroCamisa", jogador.NumeroCamisa);
-                cmd.Parameters.AddWithValue("@IdTime", jogador.IdTime ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@IdTime", jogador.IdTime);
                 cmd.Parameters.AddWithValue("@IdPosicao", jogador.RefIdPosicao.IdPosicao);
 
                 cmd.ExecuteNonQuery();
@@ -44,7 +45,118 @@ namespace Dashboard_Times.Repository
 
         public IEnumerable<Jogador> BuscarJogador(string termo)
         {
-            throw new NotImplementedException();
+            List<Jogador> jogadores = new List<Jogador>();
+
+            using (MySqlConnection conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                // Primeiro, tenta buscar pelo nome
+                MySqlCommand cmdNome = new MySqlCommand("call BuscarJogadorNomeCompleto(@NomeCompleto)", conexao);
+                cmdNome.Parameters.AddWithValue("@NomeCompleto", termo);
+
+                using (var reader = cmdNome.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        jogadores.Add(new Jogador
+                        {
+                            IdJogador = reader.GetInt32("IdJogador"),
+                            NomeCompleto = reader.GetString("NomeCompleto"),
+                            NomeCamisa = reader.GetString("NomeCamisa"),
+                            Idade = reader.GetInt32("Idade"),
+                            NumeroCamisa = reader.GetInt32("NumeroCamisa"),
+
+                            //se o time for nulo retorna o Idzero, sem times
+                            RefIdTime = reader.IsDBNull(reader.GetOrdinal("IdTime"))
+                            ? new Time { IdTime = 0, Nome = null }
+                            : new Time
+                            {
+                                IdTime = reader.GetInt32("IdTime"),
+                                Nome = reader.GetString("NomeTime"),
+                            },
+
+                            RefIdPosicao = new Posicao
+                            {
+                                IdPosicao = reader.GetInt32("IdPosicao"),
+                                Nome = reader.GetString("Nome"),
+                            }
+                        });
+                    }
+                }
+
+                //se não achar por Nome tenta achar por ID
+                if (!jogadores.Any())
+                {
+                    MySqlCommand cmdId = new MySqlCommand("call BuscarJogadorNomeCamisa(@NomeCamisa)", conexao);
+                    cmdId.Parameters.AddWithValue("@NomeCamisa", termo);
+
+                    using (var reader = cmdId.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            jogadores.Add(new Jogador
+                            {
+                                IdJogador = reader.GetInt32("IdJogador"),
+                                NomeCompleto = reader.GetString("NomeCompleto"),
+                                NomeCamisa = reader.GetString("NomeCamisa"),
+                                Idade = reader.GetInt32("Idade"),
+                                NumeroCamisa = reader.GetInt32("NumeroCamisa"),
+
+                                RefIdTime = reader.IsDBNull(reader.GetOrdinal("IdTime"))
+                                ? new Time { IdTime = 0, Nome = null }
+                                : new Time
+                                {
+                                    IdTime = reader.GetInt32("IdTime"),
+                                    Nome = reader.GetString("NomeTime"),
+                                },
+
+                                RefIdPosicao = new Posicao
+                                {
+                                    IdPosicao = reader.GetInt32("IdPosicao"),
+                                    Nome = reader.GetString("Nome"),
+                                }
+                            });
+                        }
+                    }
+                } 
+                if (!jogadores.Any())
+                {
+                    MySqlCommand cmdId = new MySqlCommand("call BuscarJogadorId(@Id)", conexao);
+                    cmdId.Parameters.AddWithValue("@Id", termo);
+
+                    using (var reader = cmdId.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            jogadores.Add(new Jogador
+                            {
+                                IdJogador = reader.GetInt32("IdJogador"),
+                                NomeCompleto = reader.GetString("NomeCompleto"),
+                                NomeCamisa = reader.GetString("NomeCamisa"),
+                                Idade = reader.GetInt32("Idade"),
+                                NumeroCamisa = reader.GetInt32("NumeroCamisa"),
+
+                                RefIdTime = reader.IsDBNull(reader.GetOrdinal("IdTime"))
+                                ? new Time { IdTime = 0, Nome = null }
+                                : new Time
+                                {
+                                    IdTime = reader.GetInt32("IdTime"),
+                                    Nome = reader.GetString("NomeTime"),
+                                },
+
+                                RefIdPosicao = new Posicao
+                                {
+                                    IdPosicao = reader.GetInt32("IdPosicao"),
+                                    Nome = reader.GetString("Nome"),
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+
+            return jogadores;
         }
 
         public void CadastrarJogador(Jogador jogador)
@@ -62,7 +174,7 @@ namespace Dashboard_Times.Repository
                 cmd.Parameters.Add("@NomeCamisa", MySqlDbType.VarChar).Value = jogador.NomeCamisa;
                 cmd.Parameters.Add("@Idade", MySqlDbType.Int16).Value = jogador.Idade;
                 cmd.Parameters.Add("@NumeroCamisa", MySqlDbType.Int16).Value = jogador.NumeroCamisa;
-                cmd.Parameters.Add("@IdTime", MySqlDbType.Int64).Value = jogador.RefIdTime.IdTime;
+                cmd.Parameters.Add("@IdTime", MySqlDbType.Int64).Value = jogador.IdTime;
                 cmd.Parameters.Add("@IdPosicao", MySqlDbType.Int64).Value = jogador.RefIdPosicao.IdPosicao;
 
                 cmd.ExecuteNonQuery();
@@ -110,7 +222,7 @@ namespace Dashboard_Times.Repository
                                 RefIdTime = new Time
                                 {
                                     IdTime = Convert.ToInt32(reader["IdTime"]),
-                                    Abreviacao = reader["Abreviacao"].ToString()
+                                    Nome = reader["NomeTime"].ToString()
                                 },
 
                                 RefIdPosicao = new Posicao
@@ -147,8 +259,8 @@ namespace Dashboard_Times.Repository
                             NumeroCamisa = Convert.ToInt16(reader["NumeroCamisa"]),
 
                             // Preenchendo a propriedade RefIdTime com um objeto Time
-                            RefIdTime = reader["Abreviacao"] != DBNull.Value
-                            ? new Time { Abreviacao = reader["Abreviacao"].ToString() }
+                            RefIdTime = reader["NomeTime"] != DBNull.Value
+                            ? new Time { Abreviacao = reader["NomeTime"].ToString() }
                             : null,
 
                             // Preenchendo a propriedade RefIdPosicao com uma string

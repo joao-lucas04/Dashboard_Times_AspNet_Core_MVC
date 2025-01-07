@@ -20,7 +20,7 @@ namespace Dashboard_Times.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("select * from tbPosicao;", conexao);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM tbPosicao ORDER BY Nome ASC;", conexao);
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
 

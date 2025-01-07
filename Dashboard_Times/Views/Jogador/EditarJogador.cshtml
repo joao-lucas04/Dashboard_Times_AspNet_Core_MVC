@@ -1,0 +1,82 @@
+﻿@model Dashboard_Times.Models.Jogador
+<link href="~/css/times.css" rel="stylesheet" />
+@{
+    ViewData["Title"] = "Editar Jogador";
+}
+
+<html>
+<body>
+    <div class="titulo">
+        <h1>Players</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="EditJogador" enctype="multipart/form-data" class="form-container">
+                <h2>Edit Team</h2>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div style="display: none">
+                    <label asp-for="IdJogador" class="control-label"></label>
+                    <input asp-for="IdJogador" class="form-control" />
+                    <span asp-validation-for="IdJogador" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NomeCompleto" class="control-label">Full Name</label>
+                    <input asp-for="NomeCompleto" class="form-control" placeholder="Enter Full Name" />
+                    <span asp-validation-for="NomeCompleto" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NomeCamisa" class="control-label">Shirt Name</label>
+                    <input asp-for="NomeCamisa" class="form-control" placeholder="Enter Shirt Name" />
+                    <span asp-validation-for="NomeCamisa" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RefIdPosicao.IdPosicao" class="control-label">Position</label>
+                    @Html.DropDownListFor(model => model.RefIdPosicao.IdPosicao, ViewBag.ListaPosicoes as SelectList, "Selecione uma Posicao",
+                    htmlAttributes: new { @class = "form-control" })
+                    <span asp-validation-for="RefIdPosicao.IdPosicao" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Idade" class="control-label">Age</label>
+                    <input asp-for="Idade" type="number" class="form-control" placeholder="Enter Age" />
+                    <span asp-validation-for="Idade" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NumeroCamisa" class="control-label">Shirt Number</label>
+                    <input asp-for="NumeroCamisa" type="number" class="form-control" placeholder="Enter Shirt Number" />
+                    <span asp-validation-for="NumeroCamisa" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="RefIdTime.IdTime" class="control-label">Current Team</label>
+                    @Html.DropDownListFor(model => model.RefIdTime.IdTime, ViewBag.ListaTimes as SelectList, "Selecione um time",
+                    htmlAttributes: new { @class = "form-control" })
+                    <span asp-validation-for="RefIdTime.IdTime" class="text-danger"></span>
+                </div>
+                
+                <div class="form-group button-group">
+                    <button type="submit" class="btn-submit">Save</button>
+                    <a asp-area="" class="btn-back" asp-controller="Jogador" asp-action="Index">
+                        Back
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+

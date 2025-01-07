@@ -116,6 +116,78 @@ begin
 end //
 
 delimiter //
+create procedure BuscarJogadorId(
+_IdJogador int
+)
+begin
+	SELECT 
+		J.IdJogador,
+        J.NomeCompleto,
+        J.NomeCamisa,
+        J.Idade,
+        J.NumeroCamisa,
+        T.IdTime,
+        T.Nome as NomeTime,
+        P.IdPosicao,
+        P.Nome 
+	FROM 
+		tbJogador as J
+		LEFT JOIN
+			tbTime as T on J.IdTime = T.IdTime
+		LEFT JOIN
+			tbPosicao as P on J.IdPosicao = P.IdPosicao
+		WHERE IdJogador like CONCAT('%', _IdJogador ,'%');
+end //
+
+delimiter //
+create procedure BuscarJogadorNomeCompleto(
+_NomeCompleto varchar(250)
+)
+begin
+	SELECT 
+		J.IdJogador,
+        J.NomeCompleto,
+        J.NomeCamisa,
+        J.Idade,
+        J.NumeroCamisa,
+        T.IdTime,
+        T.Nome as NomeTime,
+        P.IdPosicao,
+        P.Nome 
+	FROM 
+		tbJogador as J
+		LEFT JOIN
+			tbTime as T on J.IdTime = T.IdTime
+		LEFT JOIN
+			tbPosicao as P on J.IdPosicao = P.IdPosicao
+		WHERE NomeCompleto like CONCAT('%', _NomeCompleto ,'%');
+end //
+
+delimiter //
+create procedure BuscarJogadorNomeCamisa(
+_NomeCamisa varchar(12) 
+)
+begin
+	SELECT 
+		J.IdJogador,
+        J.NomeCompleto,
+        J.NomeCamisa,
+        J.Idade,
+        J.NumeroCamisa,
+        T.IdTime,
+        T.Nome as NomeTime,
+        P.IdPosicao,
+        P.Nome 
+	FROM 
+		tbJogador as J
+		LEFT JOIN
+			tbTime as T on J.IdTime = T.IdTime
+		LEFT JOIN
+			tbPosicao as P on J.IdPosicao = P.IdPosicao
+		WHERE NomeCamisa like CONCAT('%', _NomeCamisa ,'%');
+end //
+
+delimiter //
 create procedure ObterJogador(
 _IdJogador int
 )
@@ -127,7 +199,7 @@ begin
         J.Idade,
         J.NumeroCamisa,
         T.IdTime,
-        T.Abreviacao,
+        T.Nome as NomeTime,
         P.IdPosicao,
         P.Nome 
 	FROM 
@@ -149,7 +221,7 @@ begin
         J.Idade,
         J.NumeroCamisa,
         T.IdTime,
-        T.Abreviacao,
+        T.Nome as NomeTime,
         P.IdPosicao,
         P.Nome 
 	FROM 
@@ -157,10 +229,13 @@ begin
 		LEFT JOIN
 			tbTime as T on J.IdTime = T.IdTime
 		LEFT JOIN
-			tbPosicao as P on J.IdPosicao = P.IdPosicao;
+			tbPosicao as P on J.IdPosicao = P.IdPosicao
+		ORDER BY NomeCompleto ASC;
 end //
 
 
 
-
+call BuscarJogadorNomeCompleto("Z");
+call BuscarJogadorId(9);
+call BuscarJogadorNomeCamisa("Z");
 
