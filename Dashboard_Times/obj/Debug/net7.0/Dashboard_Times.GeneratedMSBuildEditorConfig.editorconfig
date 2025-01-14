@@ -28,12 +28,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9nYWRvclxDYWRhc3RyYXJKb2dhZG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/JEAN/Desktop/Dashboard_Times_AspNet_Core_MVC/Dashboard_Times/Views/Jogador/EditarEstatisticas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9nYWRvclxFZGl0YXJFc3RhdGlzdGljYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/JEAN/Desktop/Dashboard_Times_AspNet_Core_MVC/Dashboard_Times/Views/Jogador/EditarJogador.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9nYWRvclxFZGl0YXJKb2dhZG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/JEAN/Desktop/Dashboard_Times_AspNet_Core_MVC/Dashboard_Times/Views/Jogador/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9nYWRvclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/JEAN/Desktop/Dashboard_Times_AspNet_Core_MVC/Dashboard_Times/Views/Jogador/ViewJogador.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9nYWRvclxWaWV3Sm9nYWRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/JEAN/Desktop/Dashboard_Times_AspNet_Core_MVC/Dashboard_Times/Views/Shared/Error.cshtml]

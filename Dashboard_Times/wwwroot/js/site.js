@@ -4,26 +4,23 @@
 
     let activeLinkId;
 
-    switch (currentPath) {
-        case "/Home":
-            activeLinkId = "overview";
-            break;
-        case "/Time":
-        case "/Time/CadastrarTime":
-        case "/Time/EditarTime":
-            activeLinkId = "teams";
-            break;
-        case "/Jogador":
-        case "/Jogador/CadastrarJogador":
-        case "/Jogador/EditarJogador":
-            activeLinkId = "players";
-            break;
-        case "/championships":
-            activeLinkId = "championships";
-            break;
-        default:
-            activeLinkId = "overview";
-            break;
+    if (currentPath.startsWith("/Home")) {
+        activeLinkId = "overview";
+    }
+    else if (currentPath.startsWith("/Time")) {
+        activeLinkId = "teams";
+
+    }
+    else if (currentPath.startsWith("/Jogador")) {
+        activeLinkId = "players";
+
+    }
+    else if (currentPath.startsWith("/championships")) {
+        activeLinkId = "championships";
+
+    }
+    else {
+        activeLinkId = "overview";
     }
 
     if (activeLinkId) {

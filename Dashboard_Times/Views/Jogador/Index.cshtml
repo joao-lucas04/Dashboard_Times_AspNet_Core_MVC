@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Dashboard_Times.Models.Jogador>
-<link href="~/css/times.css" rel="stylesheet" />
+<link href="~/css/timesEjogadores.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 @{
     ViewData["Title"] = "Players";
@@ -81,7 +81,7 @@
                         }
                     </td>
                     <td class="Column-Action">
-                        <button id="btnView" onclick="window.location.href='@Url.Action("VizualizarTime", "Time")'">
+                        <button id="btnView" onclick="window.location.href='@Url.Action("ViewJogador", "Jogador", new { id = jogador.IdJogador })'">
                             <i class="fas fa-eye"></i>
                         </button>
 

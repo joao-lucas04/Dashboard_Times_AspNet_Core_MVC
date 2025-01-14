@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
 builder.Services.AddScoped<IJogadorRepository, JogadorRepository>();
 builder.Services.AddScoped<IPosicaoRepository, PosicaoRepository>();
+builder.Services.AddScoped<IEstatisticasJogadorRepository, EstatisticasJogadorRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -5,12 +5,16 @@
       "PackagePath": "staticwebassets\\Dashboard_Times.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\css\\estatisticas.css",
+      "PackagePath": "staticwebassets\\css\\estatisticas.css"
+    },
+    {
       "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\css\\times.css",
-      "PackagePath": "staticwebassets\\css\\times.css"
+      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\css\\timesEjogadores.css",
+      "PackagePath": "staticwebassets\\css\\timesEjogadores.css"
     },
     {
       "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\favicon.ico",
@@ -21,40 +25,8 @@
       "PackagePath": "staticwebassets\\img\\logo_sports.png"
     },
     {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Captura de Tela (107).png",
-      "PackagePath": "staticwebassets\\img\\times\\Captura de Tela (107).png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Captura de Tela (108).png",
-      "PackagePath": "staticwebassets\\img\\times\\Captura de Tela (108).png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Captura de Tela (112).png",
-      "PackagePath": "staticwebassets\\img\\times\\Captura de Tela (112).png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Captura de Tela (113).png",
-      "PackagePath": "staticwebassets\\img\\times\\Captura de Tela (113).png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Captura de Tela (303).png",
-      "PackagePath": "staticwebassets\\img\\times\\Captura de Tela (303).png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Captura de Tela (307).png",
-      "PackagePath": "staticwebassets\\img\\times\\Captura de Tela (307).png"
-    },
-    {
       "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\Corinthians_simbolo.png",
       "PackagePath": "staticwebassets\\img\\times\\Corinthians_simbolo.png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\botafogo-logo-0.png",
-      "PackagePath": "staticwebassets\\img\\times\\botafogo-logo-0.png"
-    },
-    {
-      "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\img\\times\\cortina.png",
-      "PackagePath": "staticwebassets\\img\\times\\cortina.png"
     },
     {
       "Id": "C:\\Users\\JEAN\\Desktop\\Dashboard_Times_AspNet_Core_MVC\\Dashboard_Times\\wwwroot\\js\\site.js",

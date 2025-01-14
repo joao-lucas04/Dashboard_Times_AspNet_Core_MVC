@@ -13,13 +13,15 @@ namespace Dashboard_Times.Controllers
         private IJogadorRepository _jogadorRepository;
         private IPosicaoRepository _posicaoRepository;
         private ITimeRepository _timeRepository;
+        private IEstatisticasJogadorRepository _EstJogador;
 
-        public JogadorController(ILogger<JogadorController> logger, ITimeRepository timeRepository, IJogadorRepository jogadorRepository, IPosicaoRepository posicaoRepository)
+        public JogadorController(ILogger<JogadorController> logger, IEstatisticasJogadorRepository EstJogador, ITimeRepository timeRepository, IJogadorRepository jogadorRepository, IPosicaoRepository posicaoRepository)
         {
             _logger = logger;
             _jogadorRepository = jogadorRepository;
             _posicaoRepository = posicaoRepository;
             _timeRepository = timeRepository;
+            _EstJogador = EstJogador;
         }
 
         public IActionResult Index(string termo)
@@ -104,6 +106,13 @@ namespace Dashboard_Times.Controllers
             ViewBag.ListaPosicoes = new SelectList(listaPosicoes, "IdPosicao", "Nome");
 
             var jogador = _jogadorRepository.ObterJogador(Id);
+
+            // se o time for nulo ele pega o IdTime = 0
+            if(jogador.RefIdTime == null)
+            {
+                jogador.RefIdTime = new Time { IdTime = 0 };
+            }
+
             return View(jogador);
         }
 
@@ -146,6 +155,27 @@ namespace Dashboard_Times.Controllers
 
             // Retorna o arquivo Excel como um download
             return File(arquivoExcel, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "jogadores.xlsx");
+        }
+
+        public IActionResult ViewJogador(int Id)
+        {
+            var jogadorEstatisticas = _EstJogador.ObterEstatisticas(Id);
+
+            ViewBag.TotalChutes = jogadorEstatisticas.ChutesFora + jogadorEstatisticas.ChutesGol + jogadorEstatisticas.Gols;
+
+            return View(jogadorEstatisticas);
+        }
+
+        public IActionResult EditarEstatisticas(int Id)
+        {
+            var jogadorEstatisticas = _EstJogador.ObterEstatisticas(Id);
+            return View(jogadorEstatisticas);
+        }
+
+        public IActionResult EditEstatisticasJogador(EstatisticasJogador EstJogador)
+        {
+            _EstJogador.AtualizarEstatisticas(EstJogador);
+            return RedirectToAction("ViewJogador", new { Id = EstJogador.IdJogador });
         }
     }
 }

@@ -25,6 +25,36 @@ IdPosicao int not null,
 foreign key (IdPosicao) references tbPosicao(IdPosicao)
 );
 
+create table tbEstatisticasJogador(
+IdEst int primary key auto_increment,
+ChutesFora int not null default 0,
+ChutesGol int not null default 0,
+Gols int not null default 0,
+Dribles int not null default 0,
+Assistencias int not null default 0, 
+Passes int not null default 0,
+Cruzamentos int not null default 0,
+Impedimentos int not null default 0,
+Desarmes int not null default 0,
+DuelosGanhos int not null default 0,
+Interceptacoes int not null default 0,
+BolasDefendidas int not null default 0,
+BolasDificeisDefendidas int not null default 0,
+GolsSofridos int not null default 0,
+FaltasSofridas int not null default 0,
+FaltasCometidas int not null default 0,
+PenaltisSofridos int not null default 0,
+PenaltisCometidos int not null default 0,
+CartoesAmarelos int not null default 0,
+CartoesVermelhos int not null default 0,
+GolsPenaltis int not null default 0,
+GolsPenaltisPerdido int not null default 0,
+DefesasPenaltis int not null default 0,
+GolsPenaltisSofridos int not null default 0,
+IdJogador int not null,
+foreign key (IdJogador) references tbJogador(IdJogador)
+);
+
 create table tbCampeonato(
 IdCamp int primary key auto_increment,
 Nome varchar(200) not null
@@ -51,10 +81,7 @@ foreign key (IdCamp, IdTimeCasa) references tbParticipantes(IdCamp, IdTime),
 foreign key (IdCamp, IdTimeVisitante) references tbParticipantes(IdCamp, IdTime)
 );
 
-insert into tbTime(Nome, Abreviacao, Img) values
-('Corinthians','COR','img/coringao'),
-('Jogos Mortais','JDM','img/jdmortais'),
-('Danados Futebol Clube','DAN','img/danados');
+
 
 insert into tbPosicao(Nome) values
 ('Goleiro'),
@@ -76,17 +103,72 @@ insert into tbPosicao(Nome) values
 ('Pivô'),
 ('Centroavante');
 
-insert into tbJogador(NomeCompleto, NomeCamisa, Idade, NumeroCamisa, IdTime, IdPosicao) values
-('Yuri Alberto', 'Yuri', '23', '9', '1', '18'),
-('Memphis Depay', 'Memphis', '30', '94', '1', '16'),
-('Hugo Souza', 'Hugo', '25', '1', '1', '1'),
-('Rodrigo Garro', 'Garro', '26', '10', '1', '12'),
-('Carlos Alarcon', 'CRZ', '17', '10', '2', '9'),
-('João Lucas', 'JL', '18', '1', '2', '1'),
-('Cauã Silva', 'Miles', '18', '11', '2', '8'),
-('Ruan Pablo', 'Tanque', '18', '5', '2', '4'),
-('Denis Lemos', 'Denis', '18', '18', '2', '17'),
-('Leonardo Macêdo', 'Leo', '18', '9', '2', '17');
+
+
+delimiter //
+create procedure CadastrarJogador(
+_NomeCompleto varchar(250),
+_NomeCamisa varchar(12),
+_Idade smallint,
+_NumeroCamisa smallint,
+_IdTime int,
+_IdPosicao int
+)
+begin
+	INSERT INTO tbJogador(NomeCompleto, NomeCamisa, Idade, NumeroCamisa, IdTime, IdPosicao) values 
+                         (_NomeCompleto, _NomeCamisa, _Idade, _NumeroCamisa, _IdTime, _IdPosicao);
+    
+    set @IdJogador = LAST_INSERT_ID();
+    
+    INSERT INTO tbEstatisticasJogador(IdJogador) values
+								     (@IdJogador);
+end //
+
+
+
+delimiter //
+create procedure ObterEstatisticasJogador(
+_IdJogador int
+) 
+begin
+	select 
+		E.IdEst,
+		E.ChutesFora,
+		E.ChutesGol,
+        E.Gols,
+        E.Dribles,
+        E.Assistencias,
+        E.Passes,
+        E.Cruzamentos,
+        E.Impedimentos,
+        E.Desarmes,
+        E.DuelosGanhos,
+        E.Interceptacoes,
+        E.BolasDefendidas,
+        E.BolasDificeisDefendidas,
+        E.GolsSofridos,
+        E.FaltasSofridas,
+        E.FaltasCometidas,
+        E.PenaltisSofridos,
+        E.PenaltisCometidos,
+        E.CartoesAmarelos,
+        E.CartoesVermelhos,
+        E.GolsPenaltis,
+        E.GolsPenaltisPerdido,
+        E.DefesasPenaltis,
+        E.GolsPenaltisSofridos,
+        E.IdJogador,
+        J.NomeCompleto,
+        P.Nome
+    from tbEstatisticasJogador as E
+	inner Join
+		tbJogador as J on E.IdJogador = J.IdJogador
+	inner join
+		tbPosicao as P on J.IdPosicao = P.IdPosicao
+	where E.IdJogador = _IdJogador;
+end //
+
+
 
 delimiter //
 create procedure DeletarTime(
@@ -115,6 +197,9 @@ begin
     Nome like CONCAT('%', _Nome ,'%');
 end //
 
+
+
+
 delimiter //
 create procedure BuscarJogadorId(
 _IdJogador int
@@ -138,6 +223,9 @@ begin
 			tbPosicao as P on J.IdPosicao = P.IdPosicao
 		WHERE IdJogador like CONCAT('%', _IdJogador ,'%');
 end //
+
+
+
 
 delimiter //
 create procedure BuscarJogadorNomeCompleto(
@@ -163,6 +251,8 @@ begin
 		WHERE NomeCompleto like CONCAT('%', _NomeCompleto ,'%');
 end //
 
+
+
 delimiter //
 create procedure BuscarJogadorNomeCamisa(
 _NomeCamisa varchar(12) 
@@ -187,6 +277,8 @@ begin
 		WHERE NomeCamisa like CONCAT('%', _NomeCamisa ,'%');
 end //
 
+
+
 delimiter //
 create procedure ObterJogador(
 _IdJogador int
@@ -204,12 +296,14 @@ begin
         P.Nome 
 	FROM 
 		tbJogador as J
-		INNER JOIN
+		LEFT JOIN
 			tbTime as T on J.IdTime = T.IdTime
-		INNER JOIN
+		LEFT JOIN
 			tbPosicao as P on J.IdPosicao = P.IdPosicao
 		WHERE IdJogador = _IdJogador;
 end //
+
+call ObterJogador(16)
 
 delimiter //
 create procedure ObterTodosJogadores()
@@ -235,7 +329,13 @@ end //
 
 
 
-call BuscarJogadorNomeCompleto("Z");
-call BuscarJogadorId(9);
-call BuscarJogadorNomeCamisa("Z");
+delimiter //
+create procedure DeletarJogador(
+_IdJogador int
+)
+begin
+	delete from tbEstatisticasJogador where IdJogador = _IdJogador;
+	delete from tbJogador where IdJogador = _IdJogador;
+end //
+
 

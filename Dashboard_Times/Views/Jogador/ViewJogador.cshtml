@@ -1,0 +1,58 @@
+﻿@model Dashboard_Times.Models.EstatisticasJogador
+<link href="~/css/estatisticas.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+@{
+    ViewData["Title"] = "View Jogador";
+}
+
+<html>
+<body>
+    <div class="titulo">
+        <h1>Players</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h1>@Model.NomeCompleto</h1>
+            <h1>@Model.Nome</h1>
+            <h1>Total de Chutes: @ViewBag.TotalChutes</h1>
+        </div>
+
+        <div class="centralizar">
+            <div class="grafico1-container">
+                <h1 class="num-graficoChutes">@ViewBag.TotalChutes</h1>
+                <h1 class="txt-graficoChutes">Chutes</h1>
+                <div id="graficoChutes" style="width: 600px; height: 400px;"></div>
+            </div>
+        </div>
+        
+        
+        <button id="btnEdit" onclick="window.location.href='@Url.Action("EditarEstatisticas", "Jogador", new { id = Model.IdJogador })'">
+            <i class="fas fa-edit"></i>
+        </button>
+    </div>
+</body>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Chutes Totais', 'Quantidade'],
+            ['Chutes Para Fora', @Model.ChutesFora],
+            ['Chutes no Gol', @Model.ChutesGol],
+            ['Gols Feitos', @Model.Gols],
+        ]);
+
+        var options = {
+            title: 'Dados de Chutes no Ataque',
+            pieHole: 0.4,
+            backgroundColor: 'transparent', // Remove o fundo
+            colors: ['#022c3a', '#355661', '#81969d'], // Personaliza cores
+            chartArea: { width: '100%', height: '90%' }, // Ajusta o espaço do gráfico
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('graficoChutes'));
+        chart.draw(data, options);
+    }
+</script>
+</html>

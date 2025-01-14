@@ -1,5 +1,5 @@
 ﻿@model Dashboard_Times.Models.Time
-<link href="~/css/times.css" rel="stylesheet" />
+<link href="~/css/timesEjogadores.css" rel="stylesheet" />
 @{
     ViewData["Title"] = "Cadastrar Time";
 }
@@ -23,7 +23,7 @@
 
                     <div class="form-group">
                         <label asp-for="Abreviacao" class="control-label">Abbreviation</label>
-                        <input asp-for="Abreviacao" class="form-control" placeholder="Ex: ABC" />
+                        <input oninput="this.value = this.value.toUpperCase()" asp-for="Abreviacao" class="form-control" placeholder="Ex: ABC" />
                         <span asp-validation-for="Abreviacao" class="text-danger"></span>
                         @if (ViewBag.MsgErro != null)
                         {

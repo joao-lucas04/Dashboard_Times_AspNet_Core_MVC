@@ -1,0 +1,240 @@
+﻿@model Dashboard_Times.Models.EstatisticasJogador
+<link href="~/css/estatisticas.css" rel="stylesheet" />
+
+@{
+    ViewData["Title"] = "Editar Estatisticas";
+}
+
+<html>
+<body>
+    <div class="titulo">
+        <h1>Players</h1>
+    </div>
+    
+    <div class="titulo-form">
+        <h1>@Model.NomeCompleto</h1>
+        <h1>Posição: @Model.Nome</h1>
+        <form asp-action="EditEstatisticasJogador" enctype="multipart/form-data" class="form-sessoes">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="sessao">
+                <div class="sessao-form">
+                    <h2>Ataque</h2>
+                    <div style="display: none">
+                        <label asp-for="IdEst"></label>
+                        <input type="number" min="0" max="99" asp-for="IdEst" />
+                        <span asp-validation-for="IdEst"></span>
+                    </div>
+
+                    <div style="display: none">
+                        <label asp-for="IdJogador"></label>
+                        <input type="number" min="0" max="99" asp-for="IdJogador" value="@Model.IdJogador" />
+                        <span asp-validation-for="IdJogador"></span>
+                    </div>
+
+                    <div style="display: none">
+                        <label asp-for="Nome"></label>
+                        <input type="number" min="0" max="99" asp-for="Nome" value="@Model.Nome" />
+                        <span asp-validation-for="Nome"></span>
+                    </div>
+
+                    <div style="display: none">
+                        <label asp-for="NomeCompleto"></label>
+                        <input type="number" min="0" max="99" asp-for="NomeCompleto" value="@Model.NomeCompleto" />
+                        <span asp-validation-for="NomeCompleto"></span>
+                    </div>
+                    
+                    <div>
+                        <label asp-for="ChutesFora">Chutes Para Fora:</label>
+                        <input type="number" min="0" max="99" asp-for="ChutesFora" />
+                        <span asp-validation-for="ChutesFora"></span>
+                    </div>
+                    
+
+                    <div>
+                        <label asp-for="ChutesGol">Chutes No Gol:</label>
+                        <input type="number" min="0" max="99" asp-for="ChutesGol" />
+                        <span asp-validation-for="ChutesGol"></span>
+                    </div>
+                    
+
+                    <div>
+                        <label asp-for="Gols">Gols:</label>
+                        <input type="number" min="0" max="99" asp-for="Gols" />
+                        <span asp-validation-for="Gols"></span>
+                    </div>
+                    
+
+                    <div>
+                        <label asp-for="Dribles">Dribles:</label>
+                        <input type="number" min="0" max="99" asp-for="Dribles" />
+                        <span asp-validation-for="Dribles"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="Assistencias">Assistências:</label>
+                        <input type="number" min="0" max="99" asp-for="Assistencias" />
+                        <span asp-validation-for="Assistencias"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="Cruzamentos">Cruzamentos:</label>
+                        <input type="number" min="0" max="99" asp-for="Cruzamentos" />
+                        <span asp-validation-for="Cruzamentos"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="PenaltisSofridos">Penaltis Sofridos:</label>
+                        <input type="number" min="0" max="99" asp-for="PenaltisSofridos" />
+                        <span asp-validation-for="PenaltisSofridos"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="Impedimentos">Impedimentos:</label>
+                        <input type="number" min="0" max="99" asp-for="Impedimentos" />
+                        <span asp-validation-for="Impedimentos"></span>
+                    </div>
+                </div>
+
+
+                <div class="sessao-form">
+                    <h2>Defesa</h2>
+                    <div>
+                        <label asp-for="Desarmes">Desarmes:</label>
+                        <input type="number" min="0" max="99" asp-for="Desarmes" />
+                        <span asp-validation-for="Desarmes"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="DuelosGanhos">Duelos Ganhos:</label>
+                        <input type="number" min="0" max="99" asp-for="DuelosGanhos" />
+                        <span asp-validation-for="DuelosGanhos"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="Interceptacoes">Interceptações:</label>
+                        <input type="number" min="0" max="99" asp-for="Interceptacoes" />
+                        <span asp-validation-for="Interceptacoes"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="PenaltisCometidos">Penaltis Cometidos:</label>
+                        <input type="number" min="0" max="99" asp-for="PenaltisCometidos" />
+                        <span asp-validation-for="PenaltisCometidos"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="sessao">
+                <div class="sessao-form">
+                    <h2>Goleiro</h2>
+                    <div>
+                        <label asp-for="BolasDefendidas">Bolas Defendidas:</label>
+                        <input type="number" min="0" max="99" asp-for="BolasDefendidas" />
+                        <span asp-validation-for="BolasDefendidas"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="BolasDificeisDefendidas">Bolas Difíceis Defendidas:</label>
+                        <input type="number" min="0" max="99" asp-for="BolasDificeisDefendidas" />
+                        <span asp-validation-for="BolasDificeisDefendidas"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="GolsSofridos">Gols Sofridos:</label>
+                        <input type="number" min="0" max="99" asp-for="GolsSofridos" />
+                        <span asp-validation-for="GolsSofridos"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="DefesasPenaltis">Penaltis Defendidos:</label>
+                        <input type="number" min="0" max="99" asp-for="DefesasPenaltis" />
+                        <span asp-validation-for="DefesasPenaltis"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="GolsPenaltisSofridos">Penaltis Não Defendidos:</label>
+                        <input type="number" min="0" max="99" asp-for="GolsPenaltisSofridos" />
+                        <span asp-validation-for="GolsPenaltisSofridos"></span>
+                    </div>
+                </div>
+
+                <div class="sessao-form">
+                    <h2>Gerais</h2>
+                    <div>
+                        <label asp-for="Passes">Passes:</label>
+                        <input type="number" min="0" max="99" asp-for="Passes" />
+                        <span asp-validation-for="Passes"></span>
+                    </div>
+                    <span></span>
+
+                    <div>
+                        <label asp-for="FaltasSofridas">Faltas Sofridas:</label>
+                        <input type="number" min="0" max="99" asp-for="FaltasSofridas" />
+                        <span asp-validation-for="FaltasSofridas"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="FaltasCometidas">Faltas Cometidas:</label>
+                        <input type="number" min="0" max="99" asp-for="FaltasCometidas" />
+                        <span asp-validation-for="FaltasCometidas"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="CartoesAmarelos">Cartões Amarelos:</label>
+                        <input type="number" min="0" max="99" asp-for="CartoesAmarelos" />
+                        <span asp-validation-for="CartoesAmarelos"></span>
+                    </div>
+                    <span></span>
+
+                    <div>
+                        <label asp-for="CartoesVermelhos">Cartões Vermelhos:</label>
+                        <input type="number" min="0" max="99" asp-for="CartoesVermelhos" />
+                        <span asp-validation-for="CartoesVermelhos"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="GolsPenaltis">Gols de Penaltis:</label>
+                        <input type="number" min="0" max="99" asp-for="GolsPenaltis" />
+                        <span asp-validation-for="GolsPenaltis"></span>
+                    </div>
+
+
+                    <div>
+                        <label asp-for="GolsPenaltisPerdido">Gols de Penaltis Perdidos:</label>
+                        <input type="number" min="0" max="99" asp-for="GolsPenaltisPerdido" />
+                        <span asp-validation-for="GolsPenaltisPerdido"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sessao">
+                <button type="submit" class="btn-submit">Save</button>
+                <a asp-area="" class="btn-back" asp-controller="Jogador" asp-action="ViewJogador" asp-route-Id="@Model.IdJogador">
+                    Back
+                </a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

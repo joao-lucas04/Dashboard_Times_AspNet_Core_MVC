@@ -165,8 +165,7 @@ namespace Dashboard_Times.Repository
             {
                 conexao.Open();
 
-                var query = "INSERT INTO tbJogador(NomeCompleto, NomeCamisa, Idade, NumeroCamisa, IdTime, IdPosicao) values" +
-                    "(@NomeCompleto, @NomeCamisa, @Idade, @NumeroCamisa, @IdTime, @IdPosicao)";
+                var query = "CALL CadastrarJogador(@NomeCompleto, @NomeCamisa, @Idade, @NumeroCamisa, @IdTime, @IdPosicao)";
 
                 MySqlCommand cmd = new MySqlCommand(query, conexao);
 
@@ -187,7 +186,7 @@ namespace Dashboard_Times.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("DELETE FROM tbJogador WHERE IdJogador = @IdJogador", conexao);
+                MySqlCommand cmd = new MySqlCommand("CALL DeletarJogador(@IdJogador)", conexao);
                 cmd.Parameters.AddWithValue("@IdJogador", Id);
                 int i = cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -219,11 +218,9 @@ namespace Dashboard_Times.Repository
                                 Idade = Convert.ToInt16(reader["Idade"]),
                                 NumeroCamisa = Convert.ToInt16(reader["NumeroCamisa"]),
 
-                                RefIdTime = new Time
-                                {
-                                    IdTime = Convert.ToInt32(reader["IdTime"]),
-                                    Nome = reader["NomeTime"].ToString()
-                                },
+                                RefIdTime = reader["NomeTime"] != DBNull.Value
+                                ? new Time { Abreviacao = reader["NomeTime"].ToString() }
+                                : null,
 
                                 RefIdPosicao = new Posicao
                                 {

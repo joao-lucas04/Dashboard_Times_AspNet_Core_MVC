@@ -4,6 +4,7 @@ namespace Dashboard_Times.Models
 {
     public class Time
     {
+        [Key]
         public int IdTime { get; set; }
 
         [Required(ErrorMessage = "The name is mandatory.")]
