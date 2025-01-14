@@ -14,6 +14,65 @@
         font-size: 40px;
     }
 
+.sessao-desempenho h2 {
+    color: #022c3a;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin-left: 30px;
+}
+
+#graficoAtaque2 {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+}
+
+.container-ataque {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#graficoAtaque1 {
+    margin-left: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 30px;
+}
+
+.num-graficoChutes1 {
+    position: absolute;
+    font-size: 22px;
+    left: 36.8vw;
+    bottom: 45.8vh;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.num-graficoChutes2 {
+    position: absolute;
+    font-size: 22px;
+    left: 36.3vw;
+    bottom: 45.8vh;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+}
+
+.txt-graficoChutes {
+    position: absolute;
+    font-size: 17px;
+    left: 35.1vw;
+    bottom: 43.5vh;
+    z-index: 1;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+
+/*View de Editar o Jogador*/
 .titulo-form{
     text-align: center;
 }
@@ -23,7 +82,6 @@
         margin-bottom: 20px;
         font-size: 24px;
     }
-
 
 
 .form-sessoes {
@@ -156,36 +214,3 @@
         background-color: #5a6268;
     }
 
-.grafico1-container {
-    position: relative;
-    width: 600px;
-    height: 400px;
-}
-
-#graficoChutes {
-    width: 100%;
-    height: 100%;
-}
-
-.centralizar {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.num-graficoChutes {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-}
-
-.txt-graficoChutes {
-    font-size: 18px;
-    margin: 0;
-}

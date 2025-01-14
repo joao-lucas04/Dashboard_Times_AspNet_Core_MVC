@@ -8,27 +8,29 @@
 <html>
 <body>
     <div class="titulo">
-        <h1>Players</h1>
+        <h1>Desempenho</h1>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <h1>@Model.NomeCompleto</h1>
-            <h1>@Model.Nome</h1>
-            <h1>Total de Chutes: @ViewBag.TotalChutes</h1>
-        </div>
-
-        <div class="centralizar">
-            <div class="grafico1-container">
-                <h1 class="num-graficoChutes">@ViewBag.TotalChutes</h1>
+        <div class="sessao-desempenho">
+            <h2>Ataque</h2>
+            <div class="container-ataque">
+                @if (@ViewBag.TotalChutes < 10)
+                {
+                    <h1 class="num-graficoChutes1">@ViewBag.TotalChutes</h1>
+                } else
+                {
+                    <h1 class="num-graficoChutes2">@ViewBag.TotalChutes</h1>
+                }
                 <h1 class="txt-graficoChutes">Chutes</h1>
-                <div id="graficoChutes" style="width: 600px; height: 400px;"></div>
+                <div id="graficoAtaque1"></div>
+                <div id="graficoAtaque2"></div>
             </div>
         </div>
         
         
-        <button id="btnEdit" onclick="window.location.href='@Url.Action("EditarEstatisticas", "Jogador", new { id = Model.IdJogador })'">
+        @*<button id="btnEdit" onclick="window.location.href='@Url.Action("EditarEstatisticas", "Jogador", new { id = Model.IdJogador })'">
             <i class="fas fa-edit"></i>
-        </button>
+        </button>*@
     </div>
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -36,23 +38,64 @@
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
+        graficoRoscaAtaque1();
+        graficoBarrasAtaque2();
+    }
+
+    // grafico de chutes do ataque
+    function graficoRoscaAtaque1() {
         var data = google.visualization.arrayToDataTable([
             ['Chutes Totais', 'Quantidade'],
-            ['Chutes Para Fora', @Model.ChutesFora],
+            ['Chutes Fora', @Model.ChutesFora],
             ['Chutes no Gol', @Model.ChutesGol],
             ['Gols Feitos', @Model.Gols],
         ]);
 
         var options = {
-            title: 'Dados de Chutes no Ataque',
             pieHole: 0.4,
-            backgroundColor: 'transparent', // Remove o fundo
+            backgroundColor: 'transparent',
             colors: ['#022c3a', '#355661', '#81969d'], // Personaliza cores
-            chartArea: { width: '100%', height: '90%' }, // Ajusta o espaço do gráfico
+            width: 480,
+            height: 350
         };
 
-        var chart = new google.visualization.PieChart(document.getElementById('graficoChutes'));
+        var chart = new google.visualization.PieChart(document.getElementById('graficoAtaque1'));
         chart.draw(data, options);
     }
+
+
+
+    //grafico de barras do ataque
+    function graficoBarrasAtaque2() {
+        var data = google.visualization.arrayToDataTable([
+            ["Tipo de Desempenho", "Quantidade", { role: "style" }],
+            ["Dribles", @Model.Dribles, "#022c3a"],
+            ["Assistências", @Model.Assistencias, "#022c3a"],
+            ["Cruzamentos", @Model.Cruzamentos, "#022c3a"],
+            ["Penaltis Sofridos", @Model.PenaltisSofridos, "#022c3a"],
+            ["Impedimentos", @Model.Impedimentos, "#022c3a"]
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1,
+            {
+                calc: "stringify",
+                sourceColumn: 1,
+                type: "string",
+                role: "annotation"
+            },
+            2]);
+
+        var options = {
+            bar: { groupWidth: "95%" },
+            legend: { position: "none" },
+            backgroundColor: 'transparent',
+            width: 480,
+            height: 350
+        };
+        var chart = new google.visualization.BarChart(document.getElementById("graficoAtaque2"));
+        chart.draw(view, options);
+    }
+
 </script>
 </html>
