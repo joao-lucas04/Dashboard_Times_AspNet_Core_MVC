@@ -14,6 +14,7 @@
         font-size: 40px;
     }
 
+
 .sessao-desempenho h2 {
     color: #022c3a;
     font-family: 'Roboto', sans-serif;
@@ -21,7 +22,7 @@
     margin-left: 30px;
 }
 
-#graficoAtaque2 {
+.grafico2 {
     background-color: white;
     border-radius: 5px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -34,7 +35,7 @@
     justify-content: space-between;
 }
 
-#graficoAtaque1 {
+.grafico1 {
     margin-left: 20px;
     background-color: white;
     border-radius: 5px;

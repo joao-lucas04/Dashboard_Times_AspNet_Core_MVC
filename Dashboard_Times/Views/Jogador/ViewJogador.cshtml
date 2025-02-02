@@ -22,15 +22,30 @@
                     <h1 class="num-graficoChutes2">@ViewBag.TotalChutes</h1>
                 }
                 <h1 class="txt-graficoChutes">Chutes</h1>
-                <div id="graficoAtaque1"></div>
-                <div id="graficoAtaque2"></div>
+                <div id="graficoAtaque1" class="grafico1"></div>
+                <div id="graficoAtaque2" class="grafico2"></div>
+            </div>
+        </div>
+
+        <div class="sessao-desempenho">
+            <h2>Goleiro</h2>
+            <div class="container-ataque">
+                <div id="graficoGoleiroChutes" class="grafico1"></div>
+                <div id="graficoGoleiroPenaltis" class="grafico2"></div>
+            </div>
+        </div>
+
+        <div class="sessao-desempenho">
+            <h2>Defesa</h2>
+            <div class="container-ataque">
+                <div id="graficoDefesa" class="grafico1"></div>
+                <div id="graficoPenaltisBatidas" class="grafico2"></div>
             </div>
         </div>
         
-        
-        @*<button id="btnEdit" onclick="window.location.href='@Url.Action("EditarEstatisticas", "Jogador", new { id = Model.IdJogador })'">
+        <button id="btnEdit" onclick="window.location.href='@Url.Action("EditarEstatisticas", "Jogador", new { id = Model.IdJogador })'">
             <i class="fas fa-edit"></i>
-        </button>*@
+        </button>
     </div>
 </body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -40,9 +55,16 @@
     function drawChart() {
         graficoRoscaAtaque1();
         graficoBarrasAtaque2();
+        graficoBarrasDefesa();
+        graficoRoscaPenaltisBatidas();
+        graficoGoleiroChutes();
+        graficoGoleiroPenaltis();
     }
 
-    // grafico de chutes do ataque
+
+
+
+
     function graficoRoscaAtaque1() {
         var data = google.visualization.arrayToDataTable([
             ['Chutes Totais', 'Quantidade'],
@@ -52,9 +74,10 @@
         ]);
 
         var options = {
+            title: "Desempenho de Finalizações do Jogador",
             pieHole: 0.4,
             backgroundColor: 'transparent',
-            colors: ['#022c3a', '#355661', '#81969d'], // Personaliza cores
+            colors: ['#022c3a', '#355661', '#81969d'],
             width: 480,
             height: 350
         };
@@ -65,7 +88,8 @@
 
 
 
-    //grafico de barras do ataque
+
+
     function graficoBarrasAtaque2() {
         var data = google.visualization.arrayToDataTable([
             ["Tipo de Desempenho", "Quantidade", { role: "style" }],
@@ -73,29 +97,125 @@
             ["Assistências", @Model.Assistencias, "#022c3a"],
             ["Cruzamentos", @Model.Cruzamentos, "#022c3a"],
             ["Penaltis Sofridos", @Model.PenaltisSofridos, "#022c3a"],
-            ["Impedimentos", @Model.Impedimentos, "#022c3a"]
+            ["Impedimentos", @Model.Impedimentos, "#022c3a"], // Vírgula adicionada
         ]);
 
         var view = new google.visualization.DataView(data);
-        view.setColumns([0, 1,
-            {
-                calc: "stringify",
-                sourceColumn: 1,
-                type: "string",
-                role: "annotation"
-            },
-            2]);
+        view.setColumns([0, 1, { calc: "stringify", sourceColumn: 1, type: "string", role: "annotation" }, 2]);
 
         var options = {
+            title: "Desempenho em Habilidades Ofensivas",
             bar: { groupWidth: "95%" },
             legend: { position: "none" },
             backgroundColor: 'transparent',
             width: 480,
             height: 350
         };
+
         var chart = new google.visualization.BarChart(document.getElementById("graficoAtaque2"));
         chart.draw(view, options);
     }
+
+
+
+
+
+    function graficoBarrasDefesa() {
+        var data = google.visualization.arrayToDataTable([
+            ["Tipo de Desempenho", "Quantidade", { role: "style" }],
+            ["Passes", @Model.Passes, "#022c3a"],
+            ["Desarmes", @Model.Desarmes, "#022c3a"],
+            ["Duelos Ganhos", @Model.DuelosGanhos, "#022c3a"],
+            ["Interceptações", @Model.Interceptacoes, "#022c3a"],
+            ["Penaltis Cometidos", @Model.PenaltisCometidos, "#022c3a"], // Vírgula adicionada
+        ]);
+
+        var view = new google.visualization.DataView(data);
+        view.setColumns([0, 1, { calc: "stringify", sourceColumn: 1, type: "string", role: "annotation" }, 2]);
+
+        var options = {
+            title: "Desempenho em Habilidades Defensivas",
+            bar: { groupWidth: "95%" },
+            legend: { position: "none" },
+            backgroundColor: 'transparent',
+            width: 480,
+            height: 350
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById("graficoDefesa"));
+        chart.draw(view, options);
+    }
+
+
+
+
+
+    function graficoRoscaPenaltisBatidas() {
+        var data = google.visualization.arrayToDataTable([
+            ['Tipo de Cobrança', 'Quantidade'],
+            ['Gols Penaltis', @Model.GolsPenaltis],
+            ['Penaltis Perdidos', @Model.GolsPenaltisPerdido],
+        ]);
+
+        var options = {
+            title: "Desempenho de Cobranças de Penalti do Jogador",
+            pieHole: 0.4,
+            backgroundColor: 'transparent',
+            colors: ['#022c3a', '#81969d'],
+            width: 480,
+            height: 350
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('graficoPenaltisBatidas'));
+        chart.draw(data, options);
+    }
+
+
+
+    function graficoGoleiroChutes() {
+        var data = google.visualization.arrayToDataTable([
+            ['Tipos de chutes', 'Quantidade'],
+            ['Bolas Defendidas', @Model.BolasDefendidas],
+            ['Bolas Difíceis Defendidas', @Model.BolasDificeisDefendidas],
+            ['Gols Sofridos', @Model.GolsSofridos]
+        ]);
+
+        var options = {
+            title: "Desempenho de Bolas Defendidas pelo Goleiro",
+            pieHole: 0.4,
+            backgroundColor: 'transparent',
+            colors: ['#022c3a', '#355661', '#81969d'],
+            width: 480,
+            height: 350
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('graficoGoleiroChutes'));
+        chart.draw(data, options);
+    }
+
+
+
+    function graficoGoleiroPenaltis() {
+        var data = google.visualization.arrayToDataTable([
+            ['tipos de penaltis', 'Quantidade'],
+            ['Penaltis Defendidos', @Model.DefesasPenaltis],
+            ['Penaltis Não Defendidos', @Model.GolsPenaltisSofridos],
+        ]);
+
+        var options = {
+            title: "Desempenho em Cobranças Penaltis do Goleiro",
+            pieHole: 0.4,
+            backgroundColor: 'transparent',
+            colors: ['#022c3a', '#81969d'],
+            width: 480,
+            height: 350
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('graficoGoleiroPenaltis'));
+        chart.draw(data, options);
+    }
+
+
 
 </script>
 </html>
