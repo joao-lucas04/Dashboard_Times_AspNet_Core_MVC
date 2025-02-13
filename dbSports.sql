@@ -70,6 +70,7 @@ foreign key (IdTime) references tbTime(IdTime),
 primary key (IdCamp, IdTime)
 );
 
+/*
 create table tbPartida(
 IdPartida int primary key auto_increment,
 PlacarTimeCasa smallint not null default 0,
@@ -80,6 +81,7 @@ IdTimeVisitante int not null,
 foreign key (IdCamp, IdTimeCasa) references tbParticipantes(IdCamp, IdTime),
 foreign key (IdCamp, IdTimeVisitante) references tbParticipantes(IdCamp, IdTime)
 );
+*/
 
 
 
@@ -338,4 +340,26 @@ begin
 	delete from tbJogador where IdJogador = _IdJogador;
 end //
 
+-- Comando de Teste para inserir alguns dos Times no Git Hub
+INSERT INTO Times (Nome, Abreviacao, Img) VALUES
+('Flamengo', 'FLA', '/img/times/Flamengo-RJ_(BRA).png'),
+('Atletico-MG', 'AMG', '/img/times/672px-Atletico_mineiro_galo.png'),
+('Corinthians', 'COR', '/img/times/Corinthians_simbolo.png'),
+('Botafogo', 'BOT', '/img/times/Escudo_Botafogo.png'),
+('Vitória', 'VIT', '/img/times/Esporte_Clube_Vitória_logo.png'),
+('Bahia', 'BAH', '/img/times/ECBahia.png'),
+('Cruzeiro', 'CRU', '/img/times/Logo_Cruzeiro_1996.png'),
+('Ceará', 'CEA', '/img/times/Ceará_Sporting_Club_logo.svg.png'),
+('Grêmio', 'GRE', '/img/times/Gremio_logo.svg.png'),
+('Internacional', 'INT', '/img/times/Escudo_do_Sport_Club_Internacional.svg.png'),
+('Juventude', 'JUV', '/img/times/Juventude_pika.png'),
+('Mirassol', 'MIR', '/img/times/Mirassol_FC_logo.png'),
+('Palmeiras', 'PAL', '/img/times/Palmeiras_logo.svg.png'),
+('São Paulo', 'SAO', '/img/times/São_Paulo_Futebol_Clube.png'),
+('Sport Recife', 'SPO', '/img/times/Sport_Club_do_Recife.png'),
+('Bragantino', 'BRA', '/img/times/RedBullBragantino.png'),
+('Fluminense', 'FLU', '/img/times/Fluminense_FC_escudo.png'),
+('Fortaleza', 'FOR', '/img/times/Escudo_do_Fortaleza_EC.png'),
+('Vasco', 'VAS', '/img/times/CRVascodaGama.png'),
+('Santos', 'SAN', '/img/times/Santos_Logo.png');
 
